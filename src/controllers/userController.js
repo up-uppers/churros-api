@@ -1,10 +1,6 @@
+const User = require('../models/User');
 
 class UserController {
-
-    // async save(req, res) {
-
-    // }
-
 
     async find (req, res) {
         const id = req.params.id

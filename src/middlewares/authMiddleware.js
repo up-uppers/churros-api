@@ -22,4 +22,4 @@ class AuthMiddleware {
     }
 }
 
-module.exports = AuthMiddleware.new()
+module.exports = new AuthMiddleware()

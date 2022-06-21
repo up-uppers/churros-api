@@ -13,7 +13,7 @@ app.use(express.json())
 app.use('/auth', authRouter)
 app.use('/user', userRouter)
 
-
+// start
 app.get('/', (req, res) => {
     res.status(200).json({msg: 'hello world!'})
 })
