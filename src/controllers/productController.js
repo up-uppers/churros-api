@@ -2,11 +2,12 @@ const productModel = require('../models/ProductModel');
 class ProductController {
 
     async create(req, res){
-        const { name, description, price } = req.body
+        const { name, description, type, price } = req.body
 
         const result = await productModel.create({
             name,
             description,
+            type,
             price
         });
         res.status(201).json(result);
@@ -32,7 +33,7 @@ class ProductController {
         res.status(200).json(result);
     }
 
-    async update(req, res){
+    async update(req , res){
         const result = await productModel.findByIdAndUpdate(req.params.id, req.body);
         
         if(!result) {
