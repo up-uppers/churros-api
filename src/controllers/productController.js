@@ -24,7 +24,7 @@ class ProductController {
     }
 
     async find(req, res){
-        const result = await productModel.findOne({'id': req.params.id});
+        const result = await productModel.findOne({'_id': req.params.id});
 
         if(!result) {
             res.status(404).json({ msg: "não foi possivel encontrar este produto!" })
