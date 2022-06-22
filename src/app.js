@@ -28,7 +28,7 @@ const dbUser = process.env.DB_USER
 const dbPass = process.env.DB_PASS
 
 mongoose.connect(`mongodb+srv://${dbUser}:${dbPass}@cluster0.dkr19.mongodb.net/?retryWrites=true&w=majority`).then(() => {
-    app.listen(3000)
+    app.listen(3009)
     console.log('conectou ao banco')
 }).catch((err) => {
     console.log(err)

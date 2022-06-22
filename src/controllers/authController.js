@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 const User = require('../models/User');
+const Profile = require('../models/ProfileModel');
 
 class AuthController {
     
@@ -85,7 +86,10 @@ class AuthController {
     
             user.token = token;
             user.save()
-            res.status(200).json({ msg: "autenticação realizada com sucesso", token })
+            
+            const profile = await Profile.findOne({ code: user.profile })
+
+            res.status(200).json({ user, profile, msg: "autenticação realizada com sucesso", token })
         } catch (error) {
             res.status(500).json({ msg: error })
         }
