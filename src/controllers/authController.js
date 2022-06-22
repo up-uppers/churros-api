@@ -30,7 +30,9 @@ class AuthController {
         if(userExists){
             return res.status(422).json({ msg: 'use outro email' })
         }
-    
+
+        const profile = req.body.profile || '1'
+
         // senha
         const salt = await bcrypt.genSalt(12)
         const passwordHash = await bcrypt.hash(password, salt)
@@ -38,6 +40,7 @@ class AuthController {
         const user = new User({
             name,
             email,
+            profile: profile,
             password: passwordHash
         })
     
@@ -80,6 +83,8 @@ class AuthController {
                 expiresIn: 3600 // Expira em 3600 segundos ou 1 hora.
             })
     
+            user.token = token;
+            user.save()
             res.status(200).json({ msg: "autenticação realizada com sucesso", token })
         } catch (error) {
             res.status(500).json({ msg: error })
